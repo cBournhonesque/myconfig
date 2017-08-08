@@ -1,8 +1,21 @@
 ## unplanned
 
+IMPROVEMENTS:
+
+* `:GoAddTags` and `:GoRemoveTags` now continue to process if there are malformed individual struct tags [gh-1401]
+* `:GoAddTags` and `:GoRemoveTags` now shows a quickfix window if there are malformed struct tags [gh-1401]
+
+
+BUG FIXES:
+
+* Include comments in import block when folding is enabled [gh-1387]
+* Fix opening definitions in tabs [gh-1400]
+
+## 1.14 - (August 6, 2017)
+
 FEATURES:
 
-* We now have folding support based on Go syntax. To enable it you have to set the following vim setting: `set foldmethod=syntax`. Currently it folds at block (`{ }`), var and const level. These can be individually disabled/enabled if wished. For more info please read the documentation for the `g:go_fold_enable` setting. [gh-1339] 
+* We now have folding support based on Go syntax. Check out the [demo](https://twitter.com/fatih/status/893843722093330433) to see it in action. To enable it you have to set the following vim setting: `set foldmethod=syntax`. Currently it folds at block (`{ }`), var and const level. These can be individually disabled/enabled if wished. For more info please read the documentation for the `g:go_fold_enable` setting. [gh-1339] 
 * `:GoFiles` accepts now an argument to change the type of files it can show. By default it shows`.go source files` but now it can be changed to show various kind of files. The full list can be seen via `go list --help` under the `// Source Files` section [gh-1372] i.e:
 
 ```
@@ -24,6 +37,8 @@ IMPROVEMENTS
 * The `af` text object is able to include the assignment variable for anonymous functions. Can be disabled with `g:go_textobj_include_variable = 0` [gh-1345]
 * Add `g:go_list_autoclose` setting to prevent closting the quickfix/location list after zero items [gh-1361]
 * Cursor is now adjusted and locked to the correct line when `goimports` is used for autosave [gh-1367]
+* Complement the path of command for different situations of Cygwin environment [gh-1394]
+* Show message when using :GoDef and opening a new buffer [gh-1385]
 
 
 BUG FIXES:
@@ -40,10 +55,13 @@ BUG FIXES:
 * Fix showing an empty window if `gogetdoc` was not found [gh-1379]
 * Fix commands not being executed if paths would include spaces (binary name, GOPATH, file itself, etc..)  [gh-1374]
 * Fix showing correct message when editing a new file [gh-1371]
+* Fix filepaths in the quickfix list for :GoVet [gh-1381]
+* Run :GoLint against the package of the open file [gh-1382]
 
 BACKWARDS INCOMPATIBILITIES:
 
 * `:GoFmt` now uses `quickfix` to show formatting errors instead of `locationlist`. To change back to `locationlist` you can change it with the setting `let g:go_list_type = "locationlist"` [gh-1365]
+* `:GoLint` now runs against the package of the open file instead of the current working directory. This is so all commands behave the same relative to the current open buffer. For more info check the [comment here](https://github.com/fatih/vim-go/issues/1375#issuecomment-317535953) [gh-1382]
 
 
 
@@ -518,6 +536,56 @@ BACKWARDS INCOMPATIBILITIES:
 * `g:go_guru_scope` accepts a variable in type of `list` instead of `string`.
   i.g: `let g:go_guru_scope = ["github.com/fatih/structs", "golang.org/x/tools/..."]`
 
+
+## 1.5 (Mar 16, 2016)
+
+FEATURES:
+* Introducing code name "motion". A new whole way of moving
+  around and navigating (gh-765). Checkout the following new changes:
+  * A vim-go specific tool, called [motion](https://github.com/fatih/motion) is being developed which
+    provides us the underlying foundation for the following and upcoming
+    new features.
+  * `]]` and `[[` motions can be used to jump between functions
+  * `if` and `af` are improved and implement from scratch. It has now
+    support for literal functions, comments of functions, better cursor
+    position support and more stable.
+  * New `:GoDecls` and `:GoDeclsDir` commands that are available if
+    `ctrlp.vim` is installed. Once called one can easily jump to any generic declaration available.
+  * I wrote two blog posts about these new features in more detail. I recommend you to read it: [Treating Go types as objects in Vim](https://medium.com/@farslan/treating-go-types-as-objects-in-vim-ed6b3fad9287#.mbwaisevp) and [Navigation between functions and types in vim-go](https://medium.com/@farslan/navigation-between-functions-and-types-in-vim-go-f9dd7de8ca37#.2sdf8tbbe)
+* A new `:GoAlternate` command that toggles to the test
+  file of the current file. It also has new appropriate mappings to open the
+  alternate file in split or tabs. (gh-704)
+* Now commands can choose whether they want to open a
+  `quickfix` or a `location list` via the setting `g:go_list_type`. Also all
+  the commands have now some sensible settings, some will open a qf window,
+  some will open a location list (gh-700)
+
+IMPROVEMENTS:
+
+* Add support for goimport's new `-srcdir`. Goimports now succesfully suports `vendor/` folders with this release. (gh-735)
+* Add `g:go_gorename_prefill` setting which disabled pre filling the argument for `:GoRename` (gh-711)
+* Improve `:GoRun` to complete to filenames (gh-742)
+* Highlight `//go:generate` comment directives (gh-757)
+* Indent code in Go HTML templates (gh-709)
+* Improve negative numbers of all types, octals, imaginary numbers with exponents (gh-752)
+* Improved internal usage of retrieving offsets (gh-762)
+* Improve by substitute all backslashes to slashes for filename (gh-703)
+* Improve internal Go package path function (gh-702)
+* Improved typo and grammar errors in docs (gh-714)
+* Improved internal `:GoInfo` automatic call (gh-759)
+
+BUG FIXES:
+
+* Fix oracle scope not working if trailing slash exists in scope (gh-751) 
+* Fix `:GoErrCheck` checking abspath (gh-671)
+* Fix `:GoInstall` correctly parsing errors (gh-692)
+* Fix `:GoInstall` correctly parsing errors (gh-692)
+* Fix `:GoTestFunc` for neovim (gh-695)
+* Fix `:GoRun` accepting arguments for neovim (gh-730)
+* Fix `go run` mappings not working (gh-542)
+* Fix autodetect gopath picking up non existing GB vendor folder
+* Fix gofmt errors showing per buffer instead of per script (gh-721)
+* Fix some of the neosnippet snippets
 
 ## Previous releases
 

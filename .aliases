@@ -1,0 +1,17 @@
+# Git alias
+#alias anw=git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
+#'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+alias gau="git add -u"
+alias gamnv="git commit --amend --no-verify"
+alias gam="git commit --amend"
+alias gpf="git push -f origin"
+alias gp="git push origin"
+alias gs="git status"
+alias gss="git status -s"
+alias gl="git log"
+
+
+# Vim alias
+alias vix="vim -X "
+
+

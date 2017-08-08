@@ -105,6 +105,7 @@ Remove all clutter and focus only on the essential. Similar to iA Writer or Writ
 * [vim-go](https://github.com/fatih/vim-go)
 
 
+
 ## How to include your own stuff?
 
 After you have installed the setup you can create **~/.vim_runtime/my_configs.vim** to fill in any configurations that are important for you. For instance, my **my_configs.vim** looks like this:
@@ -225,6 +226,7 @@ Quickly insert parenthesis/brackets/etc.:
     inoremap $q ''<esc>i
     inoremap $e ""<esc>i
     inoremap $t <><esc>i
+
 
 Insert the current date and time (useful for timestamps):
 

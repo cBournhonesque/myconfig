@@ -10,9 +10,7 @@
 "     let OPTION_NAME = 0
 "   in your ~/.vimrc file to disable particular options. You can also write:
 "     let OPTION_NAME = 1
-"   to enable particular options.
-"   At present, all options default to on, except highlight of:
-"   functions, methods, structs, operators, build constraints and interfaces.
+"   to enable particular options. At present, all options default to off:
 "
 "   - go_highlight_array_whitespace_error
 "     Highlights white space after "[]".
@@ -36,23 +34,23 @@ if exists("b:current_syntax")
 endif
 
 if !exists("g:go_highlight_array_whitespace_error")
-  let g:go_highlight_array_whitespace_error = 1
+  let g:go_highlight_array_whitespace_error = 0
 endif
 
 if !exists("g:go_highlight_chan_whitespace_error")
-  let g:go_highlight_chan_whitespace_error = 1
+  let g:go_highlight_chan_whitespace_error = 0
 endif
 
 if !exists("g:go_highlight_extra_types")
-  let g:go_highlight_extra_types = 1
+  let g:go_highlight_extra_types = 0
 endif
 
 if !exists("g:go_highlight_space_tab_error")
-  let g:go_highlight_space_tab_error = 1
+  let g:go_highlight_space_tab_error = 0
 endif
 
 if !exists("g:go_highlight_trailing_whitespace_error")
-  let g:go_highlight_trailing_whitespace_error = 1
+  let g:go_highlight_trailing_whitespace_error = 0
 endif
 
 if !exists("g:go_highlight_operators")
@@ -91,12 +89,32 @@ if !exists("g:go_highlight_generate_tags")
   let g:go_highlight_generate_tags = 0
 endif
 
+let s:fold_block = 1
+let s:fold_import = 1
+let s:fold_varconst = 1
+if exists("g:go_fold_enable")
+  if index(g:go_fold_enable, 'block') == -1
+    let s:fold_block = 0
+  endif
+  if index(g:go_fold_enable, 'import') == -1
+    let s:fold_import = 0
+  endif
+  if index(g:go_fold_enable, 'varconst') == -1
+    let s:fold_varconst = 0
+  endif
+endif
+
 syn case match
 
-syn keyword     goDirective         package import
-syn keyword     goDeclaration       var const
+syn keyword     goPackage           package
+syn keyword     goImport            import    contained
+syn keyword     goVar               var       contained
+syn keyword     goConst             const     contained
 
-hi def link     goDirective         Statement
+hi def link     goPackage           Statement
+hi def link     goImport            Statement
+hi def link     goVar               Keyword
+hi def link     goConst             Keyword
 hi def link     goDeclaration       Keyword
 
 " Keywords within functions
@@ -191,8 +209,31 @@ syn region      goCharacter         start=+'+ skip=+\\\\\|\\'+ end=+'+ contains=
 hi def link     goCharacter         Character
 
 " Regions
-syn region      goBlock             start="{" end="}" transparent fold
 syn region      goParen             start='(' end=')' transparent
+if s:fold_block
+  syn region    goBlock             start="{" end="}" transparent fold
+else
+  syn region    goBlock             start="{" end="}" transparent
+endif
+
+" import
+if s:fold_import
+  syn region    goImport            start='import (' end=')' transparent fold contains=goImport,goString
+else
+  syn region    goImport            start='import (' end=')' transparent contains=goImport,goString
+endif
+
+" var, const
+if s:fold_varconst
+  syn region    goVar               start='var (' end=')' transparent fold contains=ALLBUT,goParen,goBlock
+  syn region    goConst             start='const (' end=')' transparent fold contains=ALLBUT,goParen,goBlock
+else
+  syn region    goVar               start='var (' end=')' transparent contains=ALLBUT,goParen,goBlock
+  syn region    goConst             start='const (' end=')' transparent contains=ALLBUT,goParen,goBlock
+endif
+
+" Single-line var, const, and import.
+syn match       goSingleDecl        /\(import\|var\|const\) [^(]\@=/ contains=goImport,goVar,goConst
 
 " Integers
 syn match       goDecimalInt        "\<-\=\d\+\%([Ee][-+]\=\d\+\)\=\>"
@@ -323,10 +364,10 @@ hi def link    goField              Identifier
 
 " Structs & Interfaces;
 if g:go_highlight_types != 0
-  syn match goTypeConstructor      /\<\w\+{/he=e-1
+  syn match goTypeConstructor      /\<\w\+{\@=/
   syn match goTypeDecl             /\<type\>/ nextgroup=goTypeName skipwhite skipnl
   syn match goTypeName             /\w\+/ contained nextgroup=goDeclType skipwhite skipnl
-  syn match goDeclType             /\<interface\|struct\>/ skipwhite skipnl
+  syn match goDeclType             /\<\(interface\|struct\)\>/ skipwhite skipnl
   hi def link     goReceiverType      Type
 else
   syn keyword goDeclType           struct interface
@@ -374,12 +415,7 @@ endif
 hi def link goCoverageNormalText Comment
 
 function! s:hi()
-  " :GoSameIds
-  if &background == 'dark'
-    hi def goSameId term=bold cterm=bold ctermbg=white ctermfg=black guibg=white guifg=black
-  else
-    hi def goSameId term=bold cterm=bold ctermbg=14 guibg=Cyan
-  endif
+  hi def link goSameId Search
 
   " :GoCoverage commands
   hi def      goCoverageCovered    ctermfg=green guifg=#A6E22E

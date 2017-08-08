@@ -7,7 +7,7 @@ au FileType python syn keyword pythonDecorator True None False self
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 
-au FileType python map <buffer> F :set foldmethod=indent<cr>
+" au FileType python map <buffer> F :set foldmethod=indent<cr>
 
 au FileType python inoremap <buffer> $r return 
 au FileType python inoremap <buffer> $i import 
@@ -65,3 +65,10 @@ au FileType gitcommit call setpos('.', [0, 1, 1, 0])
 if exists('$TMUX') 
     set term=screen-256color 
 endif
+
+"""""""""""""""""""""""""""""
+" => Markdown section
+"""""""""""""""""""""""""""""
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_autowrite = 1
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown

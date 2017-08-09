@@ -8,9 +8,11 @@ yes | sudo apt-get install zsh
 # Copy files
 cd "$HOME/myconfig"
 cp -rf * "$HOME"
+cp -rf .[^.]* "$HOME"
 cd "$HOME"
 rm -rf .git/
 rm -rf .gitmodules
+rm -rf scripts/
 
 # Git init (with submodules)
 cd "$HOME/.vim_runtime"

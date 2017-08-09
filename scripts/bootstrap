@@ -7,10 +7,10 @@ yes | sudo apt-get install zsh
 
 # Copy files
 cd "$HOME/myconfig"
-sudo cp -rf * $HOME
+cp -rf * "$HOME"
 cd "$HOME"
-sudo rm -rf .git/
-sudo rm -rf .gitmodules
+rm -rf .git/
+rm -rf .gitmodules
 
 # Git init (with submodules)
 cd "$HOME/.vim_runtime"
@@ -20,5 +20,5 @@ sh install_awesome_vimrc.sh
 cd "$HOME"
 
 # Install tmux from source file
-sudo sh tmux_build_from_source_ubuntu.sh
+sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh

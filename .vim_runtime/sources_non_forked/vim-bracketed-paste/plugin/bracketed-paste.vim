@@ -14,14 +14,15 @@ if !exists("g:bracketed_paste_tmux_wrap")
 endif
 
 function! WrapForTmux(s)
-  if !g:bracketed_paste_tmux_wrap || !exists('$TMUX')
-    return a:s
-  endif
+return a:s
+  " if !g:bracketed_paste_tmux_wrap || !exists('$TMUX')
+  "   return a:s
+  " endif
 
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
+  " let tmux_start = "\<Esc>Ptmux;"
+  " let tmux_end = "\<Esc>\\"
 
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+  " return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
 endfunction
 
 let &t_ti .= WrapForTmux("\<Esc>[?2004h")

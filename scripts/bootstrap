@@ -4,6 +4,7 @@
 yes | sudo apt-get update
 yes | sudo apt-get upgrade
 yes | sudo apt-get install zsh
+export SHELL="/bin/zsh"
 
 # Copy files and init git
 cd "$HOME/myconfig"

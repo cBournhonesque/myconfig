@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Set cd
+cd ~/myconfig
+
+# Get zsh
+sudo apt-get install zsh
+
+# Copy files
+sudo cp -rf * ~
+cd ~
+sudo rm -rf .git/
+sudo rm -rf .gitmodules
+
+# Git init (with submodules)
+cd ~/.vim_runtime
+git submodule update --init --recursive
+git pull --recurse-submodules=yes
+sh install_awesome_vimrc.sh
+cd ~
+
+# Install tmux from source file
+sudo sh tmux_build_from_source_ubuntu.sh
+rm tmux_build_from_source_ubuntu.sh

@@ -13,6 +13,11 @@ git pull --recurse-submodules=yes
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
+
+# Move the tmux ssh agent config in .ssh
+mv rc "$HOME/.ssh/"
+
+# Remove extra files
 rm -rf .git/
 rm -rf .gitmodules
 rm -rf scripts/
@@ -38,5 +43,4 @@ cd "$HOME"
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh
 yes | sudo apt-get install xclip
-yes | sudo apt-get install xsel
 tmux source-file .tmux.conf

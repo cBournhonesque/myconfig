@@ -41,4 +41,5 @@ cd "$HOME"
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh
 yes | sudo apt-get install xclip
-tmux source-file .tmux.conf
+tmux
+tmux source-file "$HOME/.tmux.conf"

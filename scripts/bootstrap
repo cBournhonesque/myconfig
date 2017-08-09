@@ -36,9 +36,6 @@ cd "sources_non_forked/YouCompleteMe/"
 
 cd "$HOME"
 
-# Set default shell to zsh
-# chsh -s "$(which zsh)"
-
 # Install tmux from source file
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh

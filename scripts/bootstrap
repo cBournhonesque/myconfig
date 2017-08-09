@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 # Update apt-get, get zsh
 yes | sudo apt-get update
 yes | sudo apt-get upgrade

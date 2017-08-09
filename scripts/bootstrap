@@ -26,9 +26,9 @@ yes | sudo apt-get install python-dev python3-dev
 cd "sources_non_forked/YouCompleteMe/"
 ./install.py
 
-
 cd "$HOME"
 
 # Install tmux from source file
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh
+tmux source-file .tmux.conf

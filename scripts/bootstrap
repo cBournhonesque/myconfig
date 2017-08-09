@@ -5,8 +5,11 @@ yes | sudo apt-get update
 yes | sudo apt-get upgrade
 yes | sudo apt-get install zsh
 
-# Copy files
+# Copy files and init git
 cd "$HOME/myconfig"
+git submodule update --init --recursive
+git pull --recurse-submodules=yes
+
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
@@ -14,11 +17,16 @@ rm -rf .git/
 rm -rf .gitmodules
 rm -rf scripts/
 
-# Git init (with submodules)
+# Configure vimrc and YCM
 cd "$HOME/.vim_runtime"
-git submodule update --init --recursive
-git pull --recurse-submodules=yes
 sh install_awesome_vimrc.sh
+
+yes | sudo apt-get install build-essential cmake
+yes | sudo apt-get install python-dev python3-dev
+cd "sources_non_forked/YouCompleteMe/"
+./install.py
+
+
 cd "$HOME"
 
 # Install tmux from source file

@@ -1,0 +1,14 @@
+[user]
+	name = Charles Bournhonesque
+	email = charlesbour@gmail.com
+[core]
+	editor = vim
+	hooksPath = ./git-config/hooks
+[alias]
+	anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#" 
+[fetch]
+	recurseSubmodules = true
+[push]
+	recurseSubmodules = true
+[diff]
+	submodule = log

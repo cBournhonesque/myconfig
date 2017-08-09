@@ -19,8 +19,11 @@ rm -rf scripts/
 
 # Configure vimrc and YCM
 cd "$HOME/.vim_runtime"
+# Vim x11 capability
+yes | sudo apt-get install vim-gtk
 sh install_awesome_vimrc.sh
 
+# Compile YCM
 yes | sudo apt-get install build-essential cmake
 yes | sudo apt-get install python-dev python3-dev
 cd "sources_non_forked/YouCompleteMe/"
@@ -29,9 +32,11 @@ cd "sources_non_forked/YouCompleteMe/"
 cd "$HOME"
 
 # Set default shell to zsh
-chsh -s "$(which zsh)"
+# chsh -s "$(which zsh)"
 
 # Install tmux from source file
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh
+yes | sudo apt-get install xclip
+yes | sudo apt-get install xsel
 tmux source-file .tmux.conf

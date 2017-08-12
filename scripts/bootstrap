@@ -34,7 +34,7 @@ sh install_awesome_vimrc.sh
 yes | sudo apt-get install build-essential cmake
 yes | sudo apt-get install python-dev python3-dev
 cd "sources_non_forked/YouCompleteMe/"
-./install.py
+python3 ./install.py
 
 cd "$HOME"
 

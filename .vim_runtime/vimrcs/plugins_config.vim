@@ -41,7 +41,8 @@ let g:python_pep8_indent_multiline_string=0
 " Set to not load YCM
 " let g:loaded_youcompleteme = 0
 let g:ycm_path_to_python_interpreter="/usr/bin/python3"
-let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_server_python_interpreter="/usr/bin/python3"
+let g:ycm_python_binary_path = "/usr/bin/python3"
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Disable syntax check (normally only for C) so that syntastic works

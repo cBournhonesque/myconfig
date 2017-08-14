@@ -1,9 +1,11 @@
 #!/bin/sh
 
-# Update apt-get, get zsh
-yes | sudo apt-get update
-yes | sudo apt-get upgrade
-yes | sudo apt-get install zsh
+# Update apt-get, get zsh, ag, ack
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install zsh -y
+sudo apt-get install ack-grep -y
+sudo apt-get install silversearcher-ag -y
 export SHELL="/bin/zsh"
 
 # Copy files and init git
@@ -26,20 +28,20 @@ rm -rf scripts/
 # Configure vimrc and YCM
 cd "$HOME/.vim_runtime"
 # Vim x11 capability
-yes | sudo apt-get install vim-gtk
+sudo apt-get install vim-gtk -y
 sh install_awesome_vimrc.sh
 
 # Compile YCM
-yes | sudo apt-get install build-essential cmake
-yes | sudo apt-get install python-dev python3-dev
+sudo apt-get install build-essential cmake -y
+sudo apt-get install python-dev python3-dev -y
 cd "sources_non_forked/YouCompleteMe/"
-./install.py
+python3 install.py
 
 cd "$HOME"
 
 # Install tmux from source file
 sh tmux_build_from_source_ubuntu.sh
 rm -rf tmux_build_from_source_ubuntu.sh
-yes | sudo apt-get install xclip
+sudo apt-get install xclip -y
 tmux
 tmux source-file "$HOME/.tmux.conf"

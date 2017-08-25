@@ -56,8 +56,8 @@ nmap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " => UltiSnips
 """"""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<c-h>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsListSnippets = '<c-l>'
 
 

@@ -1,3 +1,13 @@
+" Config for neovim
+if has('nvim')
+    set runtimepath^=~/.vim runtimepath+=~/.vim/after
+    let &packpath = &runtimepath
+else
+    set ttymouse=xterm2
+endif
+
+
+" remap escape key
 inoremap jk <ESC>
 
 " Always compute syntax from whole file

@@ -8,6 +8,16 @@ sudo apt-get install ack-grep -y
 sudo apt-get install silversearcher-ag -y
 export SHELL="/bin/zsh"
 
+# Install neovim
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo apt-get update && sudo apt-get install -y neovim
+sudo pip3 install neovim
+
+# Create config repo and symlink the .vimrc
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+ln -s ~/.vim_runtime $XDG_CONFIG_HOME/nvim
+ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+
 # Copy files and init git
 cd "$HOME/myconfig"
 git submodule update --init --recursive
@@ -45,6 +55,3 @@ rm -rf tmux_build_from_source_ubuntu.sh
 sudo apt-get install xclip -y
 tmux
 tmux source-file "$HOME/.tmux.conf"
-
-# Add hooks to diseaseTools
-sed '/logallrefupdates = true/a \    hooksPath = ~/diseaseTools/.git/hooks' ~/diseaseTools/.git/config

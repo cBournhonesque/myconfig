@@ -16,6 +16,7 @@ from os import path
 
 #--- Globals ----------------------------------------------
 PLUGINS = """
+vim-buftabline https://github.com/ap/vim-buftabline
 nerdtree https://github.com/scrooloose/nerdtree.git
 vim-bracketed-paste https://github.com/ConradIrwin/vim-bracketed-paste
 ultisnips https://github.com/SirVer/ultisnips.git

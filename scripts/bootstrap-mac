@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# Update apt-get, get zsh, ag, 
+brew update
+brew upgrade
+brew install ack
+brew install the_silver_searcher
+brew install zsh zsh-completions
+export SHELL="/bin/zsh"
+
+# Copy files and init git
+cd "$HOME/myconfig"
+git submodule update --init --recursive
+git pull --recurse-submodules=yes
+
+cp -rf * "$HOME"
+cp -rf .[^.]* "$HOME"
+cd "$HOME"
+
+# Move the tmux ssh agent config in .ssh
+mv rc "$HOME/.ssh/"
+
+# Remove extra files
+rm -rf .git/
+rm -rf .gitmodules
+rm -rf scripts/
+
+# Configure vimrc and YCM
+cd "$HOME/.vim_runtime"
+# Vim x11 capability
+# sudo apt-get install vim-gtk -y
+
+# Install vim config
+sh install_awesome_vimrc.sh
+
+# Compile YCM
+brew install cmake
+cd "sources_non_forked/YouCompleteMe/"
+python3 ./install.py
+
+cd "$HOME"
+
+# Install tmux from source file
+sh tmux_build_from_source_ubuntu.sh
+rm -rf tmux_build_from_source_ubuntu.sh
+# sudo apt-get install xclip -y
+tmux
+tmux source-file "$HOME/.tmux.conf"

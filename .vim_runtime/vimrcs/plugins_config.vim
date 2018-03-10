@@ -8,9 +8,54 @@
 """"""""""""""""""""""""""""""
 " => Load pathogen paths
 """"""""""""""""""""""""""""""
-call pathogen#infect('~/.vim_runtime/sources_forked/{}')
-call pathogen#infect('~/.vim_runtime/sources_non_forked/{}')
-call pathogen#helptags()
+" call pathogen#infect('~/.vim_runtime/sources_forked/{}')
+" call pathogen#infect('~/.vim_runtime/sources_non_forked/{}')
+" call pathogen#helptags()
+
+call plug#begin('~/.vim_runtime/plugged)
+
+Plug 'https://github.com/ap/vim-buftabline'
+Plug 'https://github.com/scrooloose/nerdtree.git', { 'on':  'NERDTreeToggle' } 
+Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'
+Plug 'https://github.com/SirVer/ultisnips.git'
+Plug 'https://github.com/scrooloose/syntastic'
+Plug 'https://github.com/tpope/vim-abolish.git'
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+Plug 'https://github.com/valloric/youcompleteme'
+Plug 'https://github.com/Konfekt/FastFold.git'
+Plug 'https://github.com/tmhedberg/SimpylFold'
+Plug 'https://github.com/mileszs/ack.vim'
+Plug 'https://github.com/rking/ag.vim'
+Plug 'https://github.com/corntrace/bufexplorer'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/vim-scripts/mayansmoke'
+Plug 'https://github.com/evanmiller/nginx-vim-syntax'
+Plug 'https://github.com/amix/open_file_under_cursor.vim'
+Plug 'https://github.com/vim-scripts/tlib'
+Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
+Plug 'https://github.com/sophacles/vim-bundle-mako'
+Plug 'https://github.com/kchmck/vim-coffee-script'
+Plug 'https://github.com/altercation/vim-colors-solarized'
+Plug 'https://github.com/michaeljsmith/vim-indent-object'
+Plug 'https://github.com/groenewege/vim-less'
+Plug 'https://github.com/plasticboy/vim-markdown.git'
+Plug 'https://github.com/therubymug/vim-pyte'
+Plug 'https://github.com/honza/vim-snippets'
+Plug 'https://github.com/tpope/vim-surround'
+Plug 'https://github.com/terryma/vim-expand-region'
+Plug 'https://github.com/terryma/vim-multiple-cursors'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
+Plug 'https://github.com/amix/vim-zenroom2'
+Plug 'https://github.com/tpope/vim-repeat'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/fatih/vim-go'
+Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/morhetz/gruvbox'
+Plug 'https://github.com/digitaltoad/vim-pug'
+Plug 'https://github.com/maxbrunsfeld/vim-yankstack'
+Plug 'https://github.com/itchyny/lightline.vim'
+call plug#end()
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
@@ -61,13 +106,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsListSnippets = '<c-l>'
 
 
-
 """"""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
 nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-P> <Plug>yankstack_substitute_newer_paste
-
 
 """"""""""""""""""""""""""""""
 " => CTRL-P
@@ -82,7 +125,6 @@ map <c-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 15
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
@@ -109,7 +151,6 @@ set grepprg=/bin/grep\ -nH
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:multi_cursor_next_key="\<C-s>"
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config

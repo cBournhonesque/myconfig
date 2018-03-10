@@ -46,7 +46,7 @@
 " Sets how many lines of history VIM has to remember
 set history=500
 
-" Dsiable the default md plugin from vim
+" Disable the default md plugin from vim
 :autocmd BufReadPre,BufNewFile *.md let b:did_ftplugin = 1
 :autocmd BufReadPre,BufNewFile *.markdown let b:did_ftplugin = 1
 
@@ -143,10 +143,8 @@ if has("gui_macvim")
     autocmd GUIEnter * set vb t_vb=
 endif
 
-
 " Don't add a bit extra margin to the left
 set foldcolumn=0
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -225,9 +223,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-" map <space> /
-map <C-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>

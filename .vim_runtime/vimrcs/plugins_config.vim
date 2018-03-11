@@ -4,6 +4,15 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !python3 install.py
+  endif
+endfunction
 
 """"""""""""""""""""""""""""""
 " => Load pathogen paths
@@ -13,6 +22,7 @@
 " call pathogen#helptags()
 
 call plug#begin('~/.vim_runtime/plugged')
+Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/ap/vim-buftabline'
 Plug 'https://github.com/scrooloose/nerdtree.git', {'on':  'NERDTreeToggle'} 
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'
@@ -20,7 +30,8 @@ Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
-Plug '~/.vim_runtime/sources_non_forked/youcompleteme'
+" Plug '~/.vim_runtime/sources_non_forked/youcompleteme'
+Plug 'https://github.com/valloric/youcompleteme', {'do': function('BuildYCM')}
 Plug 'https://github.com/Konfekt/FastFold.git'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 Plug 'https://github.com/mileszs/ack.vim'
@@ -28,7 +39,6 @@ Plug 'https://github.com/rking/ag.vim'
 Plug 'https://github.com/corntrace/bufexplorer'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/vim-scripts/mayansmoke'
-Plug 'https://github.com/evanmiller/nginx-vim-syntax'
 Plug 'https://github.com/amix/open_file_under_cursor.vim'
 Plug 'https://github.com/vim-scripts/tlib'
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
@@ -53,7 +63,8 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/morhetz/gruvbox'
 Plug 'https://github.com/digitaltoad/vim-pug'
 Plug 'https://github.com/maxbrunsfeld/vim-yankstack'
-Plug 'https://github.com/itchyny/lightline.vim'
+Plug 'taohex/lightline-buffer'
+Plug 'wting/rust.vim', {'for': 'rust'}
 call plug#end()
 
 """"""""""""""""""""""""""""""

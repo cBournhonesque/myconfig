@@ -15,12 +15,8 @@ function! BuildYCM(info)
 endfunction
 
 """"""""""""""""""""""""""""""
-" => Load pathogen paths
+" => Load plugins
 """"""""""""""""""""""""""""""
-" call pathogen#infect('~/.vim_runtime/sources_forked/{}')
-" call pathogen#infect('~/.vim_runtime/sources_non_forked/{}')
-" call pathogen#helptags()
-
 call plug#begin('~/.vim_runtime/plugged')
 Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/ap/vim-buftabline'
@@ -84,7 +80,6 @@ map <leader>n :NERDTreeToggle<CR>
 " Close NERDTree if it is the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-
 """"""""""""""""""""""""""""""
 " => pep8-indent plugin
 """"""""""""""""""""""""""""""
@@ -95,6 +90,8 @@ let g:python_pep8_indent_multiline_string=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to not load YCM
 " let g:loaded_youcompleteme = 0
+
+" use /usr/local/bin/python3 for the homebrew python
 let g:ycm_path_to_python_interpreter="/usr/bin/python3"
 let g:ycm_server_python_interpreter="/usr/bin/python3"
 let g:ycm_python_binary_path = "/usr/bin/python3"

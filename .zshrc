@@ -13,7 +13,6 @@ SAVEHIST=1000
 bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
 
-
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'

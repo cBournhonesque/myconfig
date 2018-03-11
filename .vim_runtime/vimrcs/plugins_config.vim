@@ -12,16 +12,15 @@
 " call pathogen#infect('~/.vim_runtime/sources_non_forked/{}')
 " call pathogen#helptags()
 
-call plug#begin('~/.vim_runtime/plugged)
-
+call plug#begin('~/.vim_runtime/plugged')
 Plug 'https://github.com/ap/vim-buftabline'
-Plug 'https://github.com/scrooloose/nerdtree.git', { 'on':  'NERDTreeToggle' } 
+Plug 'https://github.com/scrooloose/nerdtree.git', {'on':  'NERDTreeToggle'} 
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/scrooloose/syntastic'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
-Plug 'https://github.com/valloric/youcompleteme'
+Plug '~/.vim_runtime/sources_non_forked/youcompleteme'
 Plug 'https://github.com/Konfekt/FastFold.git'
 Plug 'https://github.com/tmhedberg/SimpylFold'
 Plug 'https://github.com/mileszs/ack.vim'

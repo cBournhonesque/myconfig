@@ -13,6 +13,9 @@ cd "$HOME/myconfig"
 git submodule update --init --recursive
 git pull --recurse-submodules=yes
 
+# Install python packages
+pip3 install -r requirements.txt
+
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
@@ -35,8 +38,6 @@ sh install_awesome_vimrc.sh
 
 # Compile YCM
 brew install cmake
-cd "sources_non_forked/YouCompleteMe/"
-python3 ./install.py
 
 cd "$HOME"
 

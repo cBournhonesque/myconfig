@@ -31,6 +31,7 @@ set guioptions-=L
 set background=dark
 " colorscheme peaksea
 colorscheme solarized
+" colorscheme falcon
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

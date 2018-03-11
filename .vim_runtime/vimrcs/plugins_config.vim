@@ -1,9 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Important:
-"       This requries that you install https://github.com/amix/vimrc !
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -34,23 +28,19 @@ Plug 'https://github.com/mileszs/ack.vim'
 Plug 'https://github.com/rking/ag.vim'
 Plug 'https://github.com/corntrace/bufexplorer'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-Plug 'https://github.com/vim-scripts/mayansmoke'
 Plug 'https://github.com/amix/open_file_under_cursor.vim'
 Plug 'https://github.com/vim-scripts/tlib'
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
-Plug 'https://github.com/sophacles/vim-bundle-mako'
-Plug 'https://github.com/kchmck/vim-coffee-script'
 Plug 'https://github.com/altercation/vim-colors-solarized'
 Plug 'https://github.com/michaeljsmith/vim-indent-object'
 Plug 'https://github.com/groenewege/vim-less'
 Plug 'https://github.com/plasticboy/vim-markdown.git'
-Plug 'https://github.com/therubymug/vim-pyte'
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/terryma/vim-expand-region'
 Plug 'https://github.com/terryma/vim-multiple-cursors'
 Plug 'https://github.com/tpope/vim-fugitive'
-Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
+Plug 'https://github.com/junegunn/goyo.vim'
 Plug 'https://github.com/amix/vim-zenroom2'
 Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-commentary'

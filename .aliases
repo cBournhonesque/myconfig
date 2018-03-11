@@ -9,10 +9,7 @@ alias gp="git push origin"
 alias gs="git status"
 alias gss="git status -s"
 alias gl="git log"
-alisa gsu="git submodule update --init --recursive | git pull --recurse-submodules=yes"
-
+alias gsu="git submodule update --init --recursive | git pull --recurse-submodules=yes"
 
 # Vim alias
 alias vix="vim -X "
-
-

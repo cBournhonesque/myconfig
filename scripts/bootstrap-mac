@@ -13,9 +13,17 @@ cd "$HOME/myconfig"
 git submodule update --init --recursive
 git pull --recurse-submodules=yes
 
+# Apply terminal configs
+cd ".terminfo"
+tic "tmux.terminfo"
+tic "tmux-256color.terminfo"
+tic "xterm-256color-italic.terminfo"
+cd ".."
+
 # Install python packages
 pip3 install -r requirements.txt
 
+# Copy files to home directory
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
@@ -36,7 +44,7 @@ cd "$HOME/.vim_runtime"
 # Install vim config
 sh install_awesome_vimrc.sh
 
-# Compile YCM
+# Tools to compile YCM
 brew install cmake
 
 cd "$HOME"

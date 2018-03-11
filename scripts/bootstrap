@@ -13,6 +13,17 @@ cd "$HOME/myconfig"
 git submodule update --init --recursive
 git pull --recurse-submodules=yes
 
+# Apply terminal configs
+cd ".terminfo"
+tic "tmux.terminfo"
+tic "tmux-256color.terminfo"
+tic "xterm-256color-italic.terminfo"
+cd ".."
+
+# Install python packages
+pip3 install -r requirements.txt
+
+# Copy files to home directory
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
@@ -31,11 +42,9 @@ cd "$HOME/.vim_runtime"
 sudo apt-get install vim-gtk -y
 sh install_awesome_vimrc.sh
 
-# Compile YCM
+# Tools to compile YCM
 sudo apt-get install build-essential cmake -y
 sudo apt-get install python-dev python3-dev -y
-cd "sources_non_forked/YouCompleteMe/"
-python3 ./install.py
 
 cd "$HOME"
 
@@ -47,4 +56,4 @@ tmux
 tmux source-file "$HOME/.tmux.conf"
 
 # Add hooks to diseaseTools
-sed '/logallrefupdates = true/a \    hooksPath = ~/diseaseTools/.git/hooks' ~/diseaseTools/.git/config
+# sed '/logallrefupdates = true/a \    hooksPath = ~/diseaseTools/.git/hooks' ~/diseaseTools/.git/config

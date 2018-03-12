@@ -1,11 +1,12 @@
 #!/bin/sh
 
-# Update apt-get, get zsh, ag, ack
+# Update apt-get, get zsh, ripgrep, fzf
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install zsh -y
-sudo apt-get install ack-grep -y
-sudo apt-get install silversearcher-ag -y
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+$HOME/.fzf/install
+sudo snap install rg -y
 export SHELL="/bin/zsh"
 
 # Copy files and init git
@@ -13,28 +14,23 @@ cd "$HOME/myconfig"
 git submodule update --init --recursive
 git pull --recurse-submodules=yes
 
-# Apply terminal configs
-cd ".terminfo"
-tic "tmux.terminfo"
-tic "tmux-256color.terminfo"
-tic "xterm-256color-italic.terminfo"
-cd ".."
-
 # Install python packages
 pip3 install -r requirements.txt
 
-# Copy files to home directory
+# Apply terminal configs
+cd "dotfiles/.terminfo"
+tic "tmux.terminfo"
+tic "tmux-256color.terminfo"
+tic "xterm-256color-italic.terminfo"
+
+# Copy dotfiles to home directory
+cd "$HOME/myconfig/dotfiles"
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
 
 # Move the tmux ssh agent config in .ssh
-mv rc "$HOME/.ssh/"
-
-# Remove extra files
-rm -rf .git/
-rm -rf .gitmodules
-rm -rf scripts/
+mv "$HOME/myconfig/rc" "$HOME/.ssh/"
 
 # Configure vimrc and YCM
 cd "$HOME/.vim_runtime"
@@ -54,6 +50,3 @@ rm -rf tmux_build_from_source_ubuntu.sh
 sudo apt-get install xclip -y
 tmux
 tmux source-file "$HOME/.tmux.conf"
-
-# Add hooks to diseaseTools
-# sed '/logallrefupdates = true/a \    hooksPath = ~/diseaseTools/.git/hooks' ~/diseaseTools/.git/config

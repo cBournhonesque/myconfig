@@ -1,10 +1,12 @@
 #!/bin/sh
 
-# Update apt-get, get zsh, ag, 
+# Update apt-get, zsh, ripgrep, fzf
 brew update
 brew upgrade
-brew install ack
-brew install the_silver_searcher
+brew install ripgrep
+brew install fzf
+# Install zsh fzf completion
+sh /usr/local/opt/fzf/install
 brew install zsh zsh-completions
 export SHELL="/bin/zsh"
 
@@ -13,28 +15,23 @@ cd "$HOME/myconfig"
 git submodule update --init --recursive
 git pull --recurse-submodules=yes
 
-# Apply terminal configs
-cd ".terminfo"
-tic "tmux.terminfo"
-tic "tmux-256color.terminfo"
-tic "xterm-256color-italic.terminfo"
-cd ".."
-
 # Install python packages
 pip3 install -r requirements.txt
 
-# Copy files to home directory
+# Apply terminal configs
+cd "dotfiles/.terminfo"
+tic "tmux.terminfo"
+tic "tmux-256color.terminfo"
+tic "xterm-256color-italic.terminfo"
+
+# Copy dotfiles to home directory
+cd "$HOME/myconfig/dotfiles"
 cp -rf * "$HOME"
 cp -rf .[^.]* "$HOME"
 cd "$HOME"
 
 # Move the tmux ssh agent config in .ssh
-mv rc "$HOME/.ssh/"
-
-# Remove extra files
-rm -rf .git/
-rm -rf .gitmodules
-rm -rf scripts/
+mv "$HOME/myconfig/rc" "$HOME/.ssh/"
 
 # Configure vimrc and YCM
 cd "$HOME/.vim_runtime"

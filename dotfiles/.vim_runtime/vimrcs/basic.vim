@@ -211,6 +211,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 """"""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
+set noshowmode
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings

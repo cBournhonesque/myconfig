@@ -14,9 +14,8 @@ endfunction
 call plug#begin('~/.vim_runtime/plugged')
 " Lightline status bar
 Plug 'https://github.com/itchyny/lightline.vim'
-" Tabline with buffers at the top
-" Plug 'https://github.com/ap/vim-buftabline'
-Plug 'taohex/lightline-buffer'
+Plug 'https://github.com/ap/vim-buftabline'
+Plug 'maximbaz/lightline-ale'
 " For files navigation
 Plug 'https://github.com/scrooloose/nerdtree.git', {'on':  'NERDTreeToggle'} 
 " Activate paste mode when pasting with command + V
@@ -25,7 +24,7 @@ Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets'
 " Linter
-Plug 'https://github.com/scrooloose/syntastic'
+Plug 'w0rp/ale' 
 " Coercion and Subvert command, Surround commands, Repeat plugins, Comment
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-surround'
@@ -97,7 +96,21 @@ let g:lightline = {
       \ 'separator': { 'left': ' ', 'right': ' ' },
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
 
+let g:lightline.active = {'right': [['lineinfo'],
+['percent'], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 """"""""""""""""""""""""""""""
 " => NERDTree plugin
@@ -168,7 +181,6 @@ map <leader>j :Files<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do not remap any keys
 let g:gitgutter_map_keys = 0
-" Turn off by default
 let g:gitgutter_enabled = 0
 nmap <leader>u :GitGutterToggle<cr>
 
@@ -207,26 +219,10 @@ nnoremap <silent> <leader>z :Goyo<cr>
 let g:go_fmt_command = "goimports"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic (syntax checker)
+" => ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_python_exec = '/usr/bin/python3'
-
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <leader>e :SyntasticCheck<CR>
-nnoremap <leader>s :SyntasticToggleMode<CR>
-nnoremap <leader>ee :sign unplace *<CR>
-
-" Python
-let g:syntastic_python_checkers=['flake8', 'mypy']
-let g:syntastic_python_mypy_args= "--follow-imports=skip --ignore-missing-imports"
-
-" Javascript
-let g:syntastic_javascript_checkers = ['jshint']
-
-" " Go
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+let g:ale_fixers={'python': ['autopep8', 'yapf']}
+let g:ale_linters={'python': ['flake8', 'pylint']}
+nmap <leader>e :ALEToggle<cr>
+nmap <silent> <leader>, <Plug>(ale_previous_wrap)
+nmap <silent> <leader>. <Plug>(ale_next_wrap)

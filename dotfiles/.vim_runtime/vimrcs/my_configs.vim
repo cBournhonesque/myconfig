@@ -27,6 +27,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " Set Ctrl-C to the + (X11) register
 vnoremap <C-c> "+y
 vnoremap <C-x> "+d
+nnoremap <C-v> "+p
+inoremap <C-v> "+p
 
 " Highlight for 80 characters
 set colorcolumn=80

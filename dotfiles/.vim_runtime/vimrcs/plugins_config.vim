@@ -20,9 +20,6 @@ Plug 'maximbaz/lightline-ale'
 Plug 'https://github.com/scrooloose/nerdtree.git', {'on':  'NERDTreeToggle'} 
 " Activate paste mode when pasting with command + V
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'
-" Snippet engine and list of pre-existing snippets
-Plug 'https://github.com/SirVer/ultisnips.git'
-Plug 'https://github.com/honza/vim-snippets'
 " Linter
 Plug 'w0rp/ale' 
 " Coercion and Subvert command, Surround commands, Repeat plugins, Comment
@@ -30,22 +27,16 @@ Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-commentary'
-" Better indent for python
-Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
 " Autocomplete
 Plug 'https://github.com/valloric/youcompleteme', {'do': function('BuildYCM')}
 " Simple Python folder and make fold faster
 Plug 'https://github.com/tmhedberg/SimpylFold'
 Plug 'https://github.com/Konfekt/FastFold.git'
-" CtrlP fuzzy finder
-" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " Used by some of the plugins/vimrcs
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
 Plug 'https://github.com/michaeljsmith/vim-indent-object'
 " Filetype plugins
-Plug 'https://github.com/plasticboy/vim-markdown.git'
-Plug 'https://github.com/fatih/vim-go'
-Plug 'wting/rust.vim', {'for': 'rust'}
+Plug 'sheerun/vim-polyglot'
 " Git plugins
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
@@ -72,6 +63,7 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 
 " fzf commands
 map <leader>o :Buffers<cr>
+map <leader>j :Files<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
@@ -121,17 +113,15 @@ map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""
-" => pep8-indent plugin
+" => Filetypes
 """"""""""""""""""""""""""""""
-let g:python_pep8_indent_multiline_string=0
-
-""""""""""""""""""""""""""""""
-" => vim-markdown
-""""""""""""""""""""""""""""""
-" Conceal links, italic, bold, etc.
+" Markdown
 set conceallevel=2
 let g:vim_markdown_conceal = 1
-
+" Python
+let g:python_pep8_indent_multiline_string=0
+" Go
+let g:go_fmt_command = "goimports"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YCM
@@ -153,28 +143,10 @@ nmap <leader>g :YcmCompleter GoTo<CR>
 nmap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""""""""""""""""""""""""""
-" => UltiSnips
-""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-
-""""""""""""""""""""""""""""""
-" => snipMate (beside <TAB> support <CTRL-j>)
-""""""""""""""""""""""""""""""
-ino <c-j> <c-r>=snipMate#TriggerSnippet()<cr>
-snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
-
-""""""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
 nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-P> <Plug>yankstack_substitute_newer_paste
-
-""""""""""""""""""""""""""""""
-" => fzf
-""""""""""""""""""""""""""""""
-map <leader>j :Files<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter
@@ -184,27 +156,6 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
 nmap <leader>u :GitGutterToggle<cr>
 
-""""""""""""""""""""""""""""""
-" => CTRL-P
-""""""""""""""""""""""""""""""
-" let MRU_Max_Entries = 400
-" let g:ctrlp_working_path_mode = 'ra'
-
-" let g:ctrlp_map = '<c-f>'
-" map <leader>j :CtrlP<cr>
-" map <leader>f :CtrlPMRU<cr>
-" map <c-b> :CtrlPBuffer<cr>
-
-" let g:ctrlp_max_height = 15
-" let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-
-""""""""""""""""""""""""""""""
-" => ZenCoding
-""""""""""""""""""""""""""""""
-" Enable all functions in all modes
-let g:user_zen_mode='a'
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,11 +163,6 @@ let g:goyo_width=100
 let g:goyo_margin_top = 2
 let g:goyo_margin_bottom = 2
 nnoremap <silent> <leader>z :Goyo<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-go
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:go_fmt_command = "goimports"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE

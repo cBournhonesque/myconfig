@@ -73,7 +73,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
@@ -100,9 +100,6 @@ let g:lightline.component_type = {
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
-
-let g:lightline.active = {'right': [['lineinfo'],
-['percent'], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
 
 """"""""""""""""""""""""""""""
 " => NERDTree plugin

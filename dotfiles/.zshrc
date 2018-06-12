@@ -1,6 +1,6 @@
 export EDITOR='vim'
-export PATH=/home/cluster/diseaseTools/etl/devtools/protobuf3/bin:/usr/local/bin:/usr/local/sbin:~/bin:$PATH
-export PYTHONPATH=/home/cluster/diseaseTools:/usr/local/lib/python:$PYTHONPATH
+export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
+export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
 
 source ~/.zprezto/init.zsh
 
@@ -21,9 +21,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Configure virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-#source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 
 # SSH agent
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then

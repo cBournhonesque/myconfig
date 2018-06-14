@@ -167,5 +167,6 @@ nnoremap <silent> <leader>z :Goyo<cr>
 let g:ale_fixers={'python': ['autopep8', 'yapf']}
 let g:ale_linters={'python': ['flake8', 'pylint']}
 nmap <leader>e :ALEToggle<cr>
+nmap <leader>t <Plug>(ale_fix)
 nmap <silent> <leader>, <Plug>(ale_previous_wrap)
 nmap <silent> <leader>. <Plug>(ale_next_wrap)

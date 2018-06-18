@@ -49,6 +49,8 @@ Plug 'https://github.com/jiangmiao/auto-pairs.git'
 " install fzf + fzf.vim
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+" change vim working directory to project directory
+Plug 'https://github.com/airblade/vim-rooter'
 " colorscemes
 Plug 'https://github.com/altercation/vim-colors-solarized'
 Plug 'Keithbsmiley/parsec.vim'

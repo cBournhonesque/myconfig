@@ -39,19 +39,19 @@ Plug 'https://github.com/michaeljsmith/vim-indent-object'
 Plug 'sheerun/vim-polyglot'
 " Git plugins
 Plug 'https://github.com/tpope/vim-fugitive'
-Plug 'https://github.com/airblade/vim-gitgutter.git'
+" Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Zenmode
 Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
 " Yankring
 Plug 'https://github.com/maxbrunsfeld/vim-yankstack'
 " Autocomplete parenthesis
-Plug 'https://github.com/jiangmiao/auto-pairs.git'
+" Plug 'https://github.com/jiangmiao/auto-pairs.git'
 " install fzf + fzf.vim
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " change vim working directory to project directory
 Plug 'https://github.com/airblade/vim-rooter'
-" colorscemes
+" colorschemes
 Plug 'https://github.com/altercation/vim-colors-solarized'
 Plug 'Keithbsmiley/parsec.vim'
 Plug 'https://github.com/morhetz/gruvbox'
@@ -114,6 +114,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """"""""""""""""""""""""""""""
 " => Filetypes
 """"""""""""""""""""""""""""""
+" let g:polyglot_disabled = ['python']
 " Markdown
 set conceallevel=2
 let g:vim_markdown_conceal = 1
@@ -121,6 +122,14 @@ let g:vim_markdown_conceal = 1
 let g:python_pep8_indent_multiline_string=0
 " Go
 let g:go_fmt_command = "goimports"
+
+"""""""""""""""""""""""""""""
+" => Python folding
+"""""""""""""""""""""""""""""
+" preview docstrings
+let g:SimpylFold_docstring_preview = 1
+" force fastfold
+let g:fastfold_force = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YCM
@@ -134,9 +143,8 @@ let g:ycm_server_python_interpreter="/usr/bin/python3"
 let g:ycm_python_binary_path = "/usr/bin/python3"
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-" Disable syntax check (normally only for C) so that syntastic works
-let g:ycm_register_as_syntastic_checker = 1
-let g:ycm_show_diagnostics_ui = 1
+" Disable syntax check from YCM
+let g:ycm_show_diagnostics_ui = 0
 
 nmap <leader>g :YcmCompleter GoTo<CR>
 nmap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -154,6 +162,8 @@ nmap <c-P> <Plug>yankstack_substitute_newer_paste
 let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
 nmap <leader>u :GitGutterToggle<cr>
+" Gitlab-fugitive
+let g:fugitive_gitlab_domains = ['https://gitlab.beno.ai']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
@@ -168,6 +178,8 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_fixers={'python': ['autopep8', 'yapf']}
 let g:ale_linters={'python': ['flake8', 'pylint']}
+" only run linters on file enter and save
+let g:ale_lint_on_text_changed = 'never'
 nmap <leader>e :ALEToggle<cr>
 nmap <leader>t <Plug>(ale_fix)
 nmap <silent> <leader>, <Plug>(ale_previous_wrap)

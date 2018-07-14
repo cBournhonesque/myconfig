@@ -6,7 +6,6 @@ else
     set ttymouse=xterm2
 endif
 
-
 " remap escape key
 inoremap jk <ESC>
 
@@ -60,10 +59,6 @@ nnoremap <silent> ]q :call WrapCommand('down', 'c')<CR>
 " <C-9> and <C-0> go up and down the location list and wrap around
 nnoremap <silent> [l :call WrapCommand('up', 'l')<CR>
 nnoremap <silent> ]l  :call WrapCommand('down', 'l')<CR>
-
-" In vim-bracketed-paste
-" I changed it so that it doesn't do anything for tmux
-" (tmux supports bracketed paste mode now)
 
 " Set :Q to do :q
 noremap :Q :q<cr>

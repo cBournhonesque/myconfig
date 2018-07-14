@@ -61,6 +61,13 @@ Plug 'https://github.com/morhetz/gruvbox'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => coloscheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme parsec
+" colorscheme solarized
+" colorscheme gruvbox
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Find files which contain a certain term (:Find term)

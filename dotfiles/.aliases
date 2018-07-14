@@ -1,6 +1,15 @@
+# Shell
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Mac Helpers
+alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
+alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
+
+
+
 # Git alias
-#alias anw=git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
-#'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
 alias gau="git add -u"
 alias gamnv="git commit --amend --no-verify"
 alias gam="git commit --amend"
@@ -9,7 +18,15 @@ alias gp="git push origin"
 alias gs="git status"
 alias gss="git status -s"
 alias gl="git log"
+alias gld="git log --oneline --graph --decorate --all"
 alias gsu="git submodule update --init --recursive | git pull --recurse-submodules=yes"
+
 
 # Vim alias
 alias vix="vim -X "
+
+
+# RiseML alias
+alias rit='f() { riseml train -f $1 };f'
+alias ril='f() { riseml logs $1 };f'
+alias ris='f() { riseml status $1 };f'

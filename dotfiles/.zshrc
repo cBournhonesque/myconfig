@@ -1,6 +1,11 @@
-export EDITOR='vim'
+# BAI
+export ME=cbournho
+PATH=$PATH:~/.riseml/bin:~/Code/build-tools/scripts
+
+# the default path is in /etc/paths
 export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
 export PYTHONPATH=/usr/local/lib/python:$PYTHONPATH
+export EDITOR='vim'
 
 source ~/.zprezto/init.zsh
 
@@ -21,9 +26,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Configure virtualenvwrapper
+# Deal with virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
+export PROJECT_HOME=$HOME/Code
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 

@@ -11,11 +11,12 @@ endif
 inoremap jk <ESC>
 
 " Always compute syntax from whole file
-autocmd BufEnter * :syntax sync fromstart
-set foldcolumn=0
+" autocmd BufEnter * :syntax sync fromstart
+set synmaxcol=128
+" syn sync maxlines=100
 
 " Start with folding open at max level of folding
-autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
+autocmd BufAdd * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
 
 " Start with folding disabled
 " set nofoldenable

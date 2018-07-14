@@ -36,10 +36,13 @@ Plug 'https://github.com/Konfekt/FastFold.git'
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils'
 Plug 'https://github.com/michaeljsmith/vim-indent-object'
 " Filetype plugins
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
+Plug 'https://github.com/vim-python/python-syntax'
 " Git plugins
 Plug 'https://github.com/tpope/vim-fugitive'
 " Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'https://github.com/shumphrey/fugitive-gitlab.vim'
 " Zenmode
 Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
 " Yankring
@@ -75,7 +78,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
+      \   'right': [ [ 'lineinfo' ], ['percent'], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
@@ -112,14 +115,15 @@ map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""
-" => Filetypes
+" => Filetypes and polyglot
 """"""""""""""""""""""""""""""
-" let g:polyglot_disabled = ['python']
+" let g:polyglot_disabled = ['python', 'python-ident']
 " Markdown
 set conceallevel=2
 let g:vim_markdown_conceal = 1
 " Python
-let g:python_pep8_indent_multiline_string=0
+let g:python_pep8_indent_multiline_string = -2
+let g:python_highlight_all = 1
 " Go
 let g:go_fmt_command = "goimports"
 
@@ -138,9 +142,9 @@ let g:fastfold_force = 1
 " let g:loaded_youcompleteme = 0
 
 " use /usr/local/bin/python3 for the homebrew python
-let g:ycm_path_to_python_interpreter="/usr/bin/python3"
-let g:ycm_server_python_interpreter="/usr/bin/python3"
-let g:ycm_python_binary_path = "/usr/bin/python3"
+let g:ycm_path_to_python_interpreter="/usr/local/bin/python3"
+let g:ycm_server_python_interpreter="/usr/local/bin/python3"
+let g:ycm_python_binary_path = "/usr/local/bin/python3"
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Disable syntax check from YCM
@@ -156,7 +160,7 @@ nmap <c-p> <Plug>yankstack_substitute_older_paste
 nmap <c-P> <Plug>yankstack_substitute_newer_paste
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Git gutter
+" => Git gutter and Fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do not remap any keys
 let g:gitgutter_map_keys = 0
@@ -179,7 +183,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 let g:ale_fixers={'python': ['autopep8', 'yapf']}
 let g:ale_linters={'python': ['flake8', 'pylint']}
 " only run linters on file enter and save
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 nmap <leader>e :ALEToggle<cr>
 nmap <leader>t <Plug>(ale_fix)
 nmap <silent> <leader>, <Plug>(ale_previous_wrap)

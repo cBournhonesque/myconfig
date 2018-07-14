@@ -15,7 +15,6 @@ au FileType python set indentkeys-=0#
 if exists('$TMUX') 
     set term=screen-256color 
 endif
-set term=screen-256color 
 
 
 """""""""""""""""""""""""""""

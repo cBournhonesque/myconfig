@@ -20,7 +20,7 @@ alias gld="git log --oneline --graph --decorate --all"
 alias gsu="git submodule update --init --recursive | git pull --recurse-submodules=yes"
 
 # Vim alias
-alias vix="vim -X "
+alias vix="vim -X"
 
 # RiseML alias
 alias rit='f() { riseml train -f $1 };f'

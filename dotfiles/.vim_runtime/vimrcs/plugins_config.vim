@@ -1,8 +1,4 @@
 function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
     !python3 install.py
   endif
@@ -41,7 +37,10 @@ Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
 Plug 'https://github.com/vim-python/python-syntax'
 " Git plugins
 Plug 'https://github.com/tpope/vim-fugitive'
-" Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'sodapopcan/vim-twiggy'
+Plug 'christoomey/vim-conflicted'
+Plug 'junegunn/gv.vim'
+Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/shumphrey/fugitive-gitlab.vim'
 " Zenmode
 Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
@@ -58,6 +57,7 @@ Plug 'https://github.com/airblade/vim-rooter'
 Plug 'https://github.com/altercation/vim-colors-solarized'
 Plug 'Keithbsmiley/parsec.vim'
 Plug 'https://github.com/morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,6 +66,9 @@ call plug#end()
 colorscheme parsec
 " colorscheme solarized
 " colorscheme gruvbox
+
+let g:seoul256_background = 237
+" colo seoul256
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf-vim
@@ -170,11 +173,45 @@ nmap <c-P> <Plug>yankstack_substitute_newer_paste
 " => Git gutter and Fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Do not remap any keys
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 0
+let g:gitgutter_map_keys = 1
+let g:gitgutter_enabled = 1
 nmap <leader>u :GitGutterToggle<cr>
 " Gitlab-fugitive
 let g:fugitive_gitlab_domains = ['https://gitlab.beno.ai']
+
+if has("autocmd")
+    " <leader>,, to go back up the tree
+    autocmd User fugitive if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' | nnoremap <buffer> <leader>,, :edit %:h<CR> | endif
+    " delete previous fugitive buffers
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+endif
+
+" Other commands
+" :GV for gvim
+" . to open :Git [CURSOR] SHA
+" shift + C to enter the git object of a tree
+" [c and ]c to move to previous/next hunk
+" ctrl + n and ctrl + p to move to next file name (in gstatus)
+set diffopt+=vertical
+nnoremap <silent> dg :diffget<Space>
+nnoremap <silent> du :diffupdate<cr>
+nnoremap <space>,a :Git add %:p<CR><CR>
+nnoremap <space>,s :silent :Gstatus<CR>
+nnoremap <space>,c :silent :Gcommit -v -q<CR>
+nnoremap <space>,d :Gdiff<CR>
+nnoremap <space>,e :Gedit<CR>
+nnoremap <space>,r :Gread<CR>
+nnoremap <space>,w :Gwrite<CR><CR>
+" other way of using GV
+nnoremap <space>,l :silent! :GV<CR>
+nnoremap <space>,b :Gblame<CR>
+nnoremap <space>,m :Gmove<Space>
+nnoremap <space>,o :Git checkout<Space>
+nnoremap <space>,ps :Dispatch! git push<CR>
+nnoremap <space>,pl :Dispatch! git pull<CR>
+" add mappings for stash/unstash, and for unittest
+" so that you can just stash the working dir + index and run the unittest, then
+" unstash
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom

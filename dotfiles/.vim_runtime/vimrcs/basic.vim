@@ -102,10 +102,8 @@ set wrap "Wrap lines
 
 " => Visual mode related
 " Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
 
 " => Moving around, tabs, windows and buffers
 " Disable highlight when <leader><cr> is pressed
@@ -116,9 +114,14 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+" Close and open windows
+map <C-q> <C-W>q
+map <C-o> <C-W>o
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
+" Make the current buffer the only one
+map <leader>bo :
 
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
@@ -160,6 +163,8 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
+
+" => Helper functions
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
   exe "normal mz"
@@ -168,8 +173,6 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
-
-" => Helper functions
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
@@ -193,14 +196,6 @@ function! VisualSelection(direction, extra_filter) range
 
     let @/ = l:pattern
     let @" = l:saved_reg
-endfunction
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
 endfunction
 
 " Don't close window, when deleting a buffer

@@ -8,7 +8,7 @@ bleach==1.5.0
 certifi==2018.1.18
 chardet==3.0.4
 CVXcanon==0.1.1
-cvxopt==1.1.9
+cvxopt==1.2.7
 cvxpy==0.4.11
 cycler==0.10.0
 decorator==4.1.2

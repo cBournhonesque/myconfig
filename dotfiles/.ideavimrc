@@ -1,0 +1,21 @@
+source ~/.vimrc
+
+set surround
+set easymotion
+set commentary
+let mapleader ="\<Space>"
+imap jk <Esc>
+vmap jk <Esc>
+
+nmap <leader>d :action GotoDeclaration<cr>
+nmap <leader>j :action GotoFile<cr>
+nmap <leader>t :action ExpressionTypeInfo<cr>
+nmap <leader>u :action FindUsages<cr>
+nmap <leader>l :action NextTab<cr>
+nmap <leader>h :action PreviousTab<cr>
+nmap <leader>o :action RecentFiles<cr>
+nmap <leader>b :action GotoImplementation<cr>
+nmap <C-o> :action Back<cr>
+nmap <C-i> :action Forward<cr>
+
+set scrolloff=0

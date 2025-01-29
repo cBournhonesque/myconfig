@@ -1,0 +1,53 @@
+# Shell
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Mac Helpers
+alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
+alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
+
+# Git alias
+alias gau="git add -u"
+alias gamnv="git commit --amend --no-verify"
+alias gam="git commit --amend"
+alias gpf="git push -f origin"
+alias gp="git push origin"
+alias gs="git status"
+alias gss="git status -s"
+alias gl="git log"
+alias gld="git log --oneline --graph --decorate --all"
+alias gsu="git submodule update --init --recursive | git pull --recurse-submodules=yes"
+# delete all local branches that have been merged
+# alias gc="git branch --merged | egrep -v \"(^\*|master|main|dev)\" | xargs git branch -d"
+
+# delete all local branches that have been merged. You have to be on main/master!
+alias gsweep="git branch -vv | grep ': gone]'|  grep -v \"\*\" | awk '{ print $1; }' | xargs -r git branch -D"
+alias grecent="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:short)%(color:reset))'"
+
+# Vim alias
+alias vix="vim -X"
+alias vim="nvim"
+
+# Snap alias
+alias snapcred='snapaccess credentials refresh'
+alias proxy='./proxy/cloud_sql_proxy -instances=spectre-1217:us-central1:places-staging-copy=tcp:5432'
+alias shome='cd ~/Snapchat/dev/go/src/github.sc-corp.net/Snapchat'
+alias gohome='cd $GOPATH'
+
+# Kubernetes
+alias k="kubectl"
+
+# Helm
+
+# Java
+alias javalist="/usr/libexec/java_home -V"
+
+# Python
+alias workon="pyenv virtualenv activate"
+
+# Unix
+alias cat="bat"
+alias du="dust"
+alias tree="broot"
+alias top="btm"

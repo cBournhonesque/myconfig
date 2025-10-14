@@ -1,0 +1,337 @@
+{
+    "editor.tabSize": 4,
+    "editor.rulers": [100],
+    "search.exclude": {
+      "**/*.git": true,
+      "**/alphanso-base/base": true,
+      "**/alphanso-strat/strat": true,
+      "**/alphanso/base": true,
+      "**/alphanso/strat": true,
+      "nbin.*": true,
+      "nrel.*": true
+    },
+    "files.exclude": {
+      ".vscode": true,
+    },
+    "search.useIgnoreFiles": false,
+    "search.followSymlinks": false,
+    "git.detectSubmodulesLimit": 100,
+    "debug.allowBreakpointsEverywhere": true, // possibly unneeded
+    "python.autoComplete.extraPaths": [
+    ],
+    "python.analysis.logLevel":"Trace",
+    "python.analysis.include": [
+    ],
+    "python.analysis.exclude": [
+        "**/node_modules",
+        "**/.venv",
+        "**/__pycache__",
+    ],
+    "cursorpyright.analysis.typeCheckingMode": "basic",
+    "cursorpyright.analysis.include": [
+    ],
+    "cursorpyright.analysis.exclude": [
+        "**/node_modules",
+        "**/.venv",
+        "**/build",
+    ],
+    "cursorpyright.analysis.extraPaths": [
+    ],
+    "basedpyright.analysis.typeCheckingMode": "recommended",
+    "basedpyright.analysis.include": [
+    ],
+    "basedpyright.analysis.extraPaths": [
+    ],
+    "basedpyright.analysis.exclude": [
+        "**/.venv",
+        "**/build",
+        "**/__pycache__",
+    ],
+    "python.analysis.enablePytestSupport": true,
+    "python.envFile": "${workspaceFolder}/.vscode/python-env-vars",
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.wordBasedSuggestions": "off"
+    },
+    "ruff.path": [
+    ],
+
+     // other formatting
+     "files.trimTrailingWhitespace": true,
+     "files.insertFinalNewline": true,
+     "editor.codeLens": false,
+     "files.watcherExclude": {"**": true},
+     // git
+     "gitlens.integrations.enabled": true,
+     "git.ignoreLimitWarning": true,
+     "git.ignoreLegacyWarning": true,
+     "gitlens.graph.minimap.enabled": false,
+     "gitlens.codeLens.scopes": [
+         "document"
+     ],
+     "gitlens.remotes": [
+         {
+             "domain": "",
+             "type": "Custom",
+             "urls": {
+                 "fileLine": "#${line}",
+                 "fileRange": "#${start}-${end}"
+             }
+         }
+     ],
+
+    "workbench.editor.enablePreview": false,
+    "workbench.statusBar.feedback.visible": false,
+    // settings sync
+    "sync.gist": "abdb22a632795ae18109bf7acd354a35",
+    "sync.autoUpload": true,
+    "sync.autoDownload": true,
+    "git.confirmSync": false,
+    // autocomplete,
+    "editor.tabCompletion": "on",
+    // vim
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+    ], // do not unfold when cursor passes over folded section
+    "vim.leader": "<Space>",
+    "vim.visualstar": true,
+    "vim.hlsearch": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useCtrlKeys": true,
+    "vim.handleKeys": {
+        "<C-j>": false
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "<enter>"],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":nohl"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.revealDefinition"
+                }
+            ]
+        },
+        {
+            "before": ["<Ctrl>", "<leader>", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.peekDefinition"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "j"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.showAllEditors"
+                }
+            ]
+        },
+        {
+          "before": ["<leader>", "u"],
+          "after": [],
+          "commands": [
+              {
+                  "command": "editor.action.goToReferences"
+              }
+          ]
+        },
+        {
+            "before": ["<leader>", "t", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeOtherEditors"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor"
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "b", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor"
+                }
+            ]
+        },
+    ],
+    "editor.suggestSelection": "first",
+    "vim.foldfix": true,
+    "git.autofetch": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    "workbench.colorTheme": "One Monokai",
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ]
+    },
+    "debug.onTaskErrors": "debugAnyway",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.terminal.launchArgs": [
+    ],
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "explorer.autoReveal": true,
+    "files.associations": {
+        "*.json": "jsonc"
+    },
+    "python.languageServer": "None",
+    "editor.minimap.enabled": false,
+    // "files.autoSaveDelay": 500,
+    // afterDelay prevents format.OnSave (ruff) from running correctly
+    // https://stackoverflow.com/questions/59651476/how-to-format-on-auto-save-using-vs-code-currently-it-only-formats-on-manual
+    "files.autoSave": "onFocusChange",
+
+    // jupyter
+    "notebook.lineNumbers": "on",
+    "notebook.output.scrolling": true,
+    "notebook.output.wordWrap": true,
+    "window.commandCenter": true,
+    "window.title": "${rootName}${separator}${profileName}",
+    "rust-analyzer.checkOnSave": false,
+    // git
+    "git.openRepositoryInParentFolders": "always",
+    "git.mergeEditor": true,
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
+    "diffEditor.experimental.showMoves": true,
+    "diffEditor.experimental.useTrueInlineView": true,
+    // Color
+    "workbench.colorCustomizations": {
+        "diffEditor.removedTextBackground": "#FF000025",
+        "diffEditor.insertedTextBackground": "#060f067c",
+        "diffEditor.insertedLineBackground": "#4ca34c31"
+    },
+    "remote.autoForwardPortsSource": "hybrid",
+    "gitlens.autolinks": [],
+    "window.titleBarStyle": "native",
+    "jupyter.completionTriggerCharacters": {
+        "bash": [
+            "$",
+            "{"
+        ],
+        "java": [
+            ".",
+            "@",
+            "#"
+        ],
+        "javascript": [
+            ".",
+            "\"",
+            "'",
+            "/",
+            "@"
+        ],
+        "python": [
+            ".",
+            "%",
+            "'",
+            "\""
+        ],
+        "julia": [
+            "."
+        ],
+        "r": [
+            "[",
+            "(",
+            ",",
+            "$",
+            "@",
+            "\"",
+            "'"
+        ],
+        "rust": [
+            ".",
+            ":"
+        ],
+        "scala": [
+            "."
+        ],
+        "typescript": [
+            ".",
+            "\"",
+            "'",
+            "/",
+            "@",
+            "<"
+        ]
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+}

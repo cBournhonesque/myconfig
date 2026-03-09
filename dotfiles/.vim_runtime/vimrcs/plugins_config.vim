@@ -1,9 +1,3 @@
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !python3 install.py
-  endif
-endfunction
-
 """"""""""""""""""""""""""""""
 " => Load vimplug paths
 """"""""""""""""""""""""""""""
@@ -12,6 +6,8 @@ call plug#begin('~/.vim_runtime/plugged')
 Plug 'https://github.com/itchyny/lightline.vim'
 Plug 'https://github.com/ap/vim-buftabline'
 Plug 'maximbaz/lightline-ale'
+" clipboard
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " For files navigation
 Plug 'https://github.com/scrooloose/nerdtree.git', {'on':  'NERDTreeToggle'} 
 " Activate paste mode when pasting with command + V
@@ -23,8 +19,6 @@ Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'https://github.com/tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-commentary'
-" Autocomplete
-Plug 'https://github.com/valloric/youcompleteme', {'do': function('BuildYCM')}
 " Simple Python folder and make fold faster
 Plug 'https://github.com/tmhedberg/SimpylFold'
 Plug 'https://github.com/Konfekt/FastFold.git'
@@ -44,12 +38,10 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/shumphrey/fugitive-gitlab.vim'
 " Zenmode
 Plug 'https://github.com/junegunn/goyo.vim', {'for': 'markdown'}
-" Yankring
-Plug 'https://github.com/maxbrunsfeld/vim-yankstack'
 " Autocomplete parenthesis
 " Plug 'https://github.com/jiangmiao/auto-pairs.git'
 " install fzf + fzf.vim
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " change vim working directory to project directory
 Plug 'https://github.com/airblade/vim-rooter'
@@ -145,24 +137,6 @@ let g:SimpylFold_docstring_preview = 1
 " force fastfold
 let g:fastfold_force = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YCM
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set to not load YCM
-" let g:loaded_youcompleteme = 0
-
-" use /usr/local/bin/python3 for the homebrew python
-let g:ycm_path_to_python_interpreter="/usr/local/bin/python3"
-let g:ycm_server_python_interpreter="/usr/local/bin/python3"
-let g:ycm_python_binary_path = "/usr/local/bin/python3"
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" Disable syntax check from YCM
-let g:ycm_show_diagnostics_ui = 0
-
-nmap <leader>g :YcmCompleter GoTo<CR>
-nmap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 """"""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
@@ -175,7 +149,7 @@ nmap <c-P> <Plug>yankstack_substitute_newer_paste
 " Do not remap any keys
 let g:gitgutter_map_keys = 1
 let g:gitgutter_enabled = 1
-nmap <leader>u :GitGutterToggle<cr>
+" nmap <leader>u :GitGutterToggle<cr>
 " Gitlab-fugitive
 let g:fugitive_gitlab_domains = ['https://gitlab.beno.ai']
 
@@ -232,3 +206,17 @@ nmap <leader>e :ALEToggle<cr>
 nmap <leader>t <Plug>(ale_fix)
 nmap <silent> <leader>, <Plug>(ale_previous_wrap)
 nmap <silent> <leader>. <Plug>(ale_next_wrap)
+
+""" Clip """
+" basic.vim already maps <C-c> to "+y -- don't override it
+" Remap y/yy/Y to use "+ register so they go through the same working path
+" Defined at VimEnter so they load after yankstack
+augroup OSCYankMappings
+  autocmd!
+  " No register overrides needed — TextYankPost sends all yanks via OSC 52
+augroup END
+" Send all yanked text to local clipboard via OSC 52
+augroup VimOSCYankPost
+  autocmd!
+  autocmd TextYankPost * call OSCYank(join(v:event.regcontents, "\n"))
+augroup END

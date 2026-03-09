@@ -1,4 +1,5 @@
 {
+    /////// Tower
     "editor.tabSize": 4,
     "editor.rulers": [100],
     "search.exclude": {
@@ -8,44 +9,128 @@
       "**/alphanso/base": true,
       "**/alphanso/strat": true,
       "nbin.*": true,
-      "nrel.*": true
+      "nrel.*": true,
+      ".repo/**": true,
     },
     "files.exclude": {
       ".vscode": true,
+      "compile_commands.json": true,
+      "**/*.git": true,
+      "**/*.pyc": true,
+      "**/*.sublime-workspace": true,
+      "**/alphanso-base/base": true,
+      "**/alphanso-port/portstrat": true,
+      "**/alphanso-strat/strat": true,
+      "**/alphanso/base": true,
+      "**/alphanso/strat": true,
+      "**/compile_commands.json": true,
+      "**/jetty-distribution*/**": true,
     },
     "search.useIgnoreFiles": false,
     "search.followSymlinks": false,
-    "git.detectSubmodulesLimit": 100,
-    "debug.allowBreakpointsEverywhere": true, // possibly unneeded
+    "git.detectSubmodulesLimit": 100, // for ignore-revs support       // ccls related options
+
+     "ccls.launch.command": "/spare/local/${env:USERNAME}/.conda/envs/clang80/bin/ccls",
+     "ccls.launch.args": ["-log-file=/spare/local/${env:USERNAME}/ccls.log", "-v=1"],
+     "ccls.cache.directory": "/spare/ssd/${env:USERNAME}/.ccls-cache",
+     "ccls.cacheDirectory": "/spare/ssd/${env:USERNAME}/.ccls-cache",
+     // This setting makes it so that ccls doesn't index all files at start-up, and
+     // instead files are only indexed on demand as you open them. This makes start-up
+     // much quicker although you lose certain things like being able to list all
+     // places where a function is called from.
+     "ccls.index.initialBlacklist": ["."],
+     "ccls.diagnostics.blacklist": ["gitlens:*", "git:*", ".*/.conda/.*"],
+     "ccls.index.threads": 3,
+     "ccls.index.trackDependency": 0,
+     "ccls.completion.enableSnippetInsertion": true,
+     "ccls.misc.showInactiveRegions": false,
+     "ccls.index.multiVersion": 1,
+
+     // Automatic formatting using clang-format for directories which have
+     // a .clang-format file. Requires the xaver.clang-format extension to
+     // be installed.
+     "clang-format.executable": "/apps/infra/fixed/clang-tooling/3.9.0/clang-format",
+     "clang-format.fallbackStyle": "none",
+     "[cpp]": {
+        // Tell vscode to use clang-format for formatting and not ccls
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true,
+     },
+     "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        // "editor.formatOnSave": true,
+    },
+    "debug.allowBreakpointsEverywhere": true, // possibly unneeInfoded
+    "python.defaultInterpreterPath": "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/bin/python",
+    // "python.defaultInterpreterPath": "/spare/ssd/cbournhonesque/src/super2/stonepy/pylib/bin/pylib_wrapper_py3",
     "python.autoComplete.extraPaths": [
+        // "/spare/local/cbournhonesque/.micromamba/envs/otel/lib/python3.8/site-packages",
+        // "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/site-packages/",
+        // "/spare/ssd/cbournhonesque/uvenvs/20241018/lib/python3.11/site-packages/",
     ],
-    "python.analysis.logLevel":"Trace",
+    // "python.analysis.extraPaths": [
+    //     "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/site-packages/"
+    // ],
+    "python.analysis.logLevel": "Trace",
     "python.analysis.include": [
+        "stonepy/pylib/**",
+        "strat/research/python_libs/strat_research/**",
+        // "/spare/ssd/cbournhonesque/uvenvs/20241018/lib/python3.11/site-packages/narwhals/**",
     ],
     "python.analysis.exclude": [
         "**/node_modules",
         "**/.venv",
+        "**/build",
         "**/__pycache__",
+        "stonepy/pylib/.src/**",
+        "stonepy/pylib/scripts/**",
+        "stonepy/pylib/bin/**",
+        "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/*",
     ],
     "cursorpyright.analysis.typeCheckingMode": "basic",
     "cursorpyright.analysis.include": [
+        "stonepy/pylib",
+        "strat/research/python_libs/strat_research",
+        // "/spare/local/cbournhonesque/.micromamba/envs/otel/lib/python3.8/site-packages/opentelemetry",
+        // "/spare/ssd/cbournhonesque/uvenvs/20241018/lib/python3.11/site-packages/narwhals/**",
     ],
     "cursorpyright.analysis.exclude": [
         "**/node_modules",
         "**/.venv",
         "**/build",
+        "**/__pycache__",
+        "stonepy/pylib/.src/**",
+        "stonepy/pylib/scripts/**",
+        "stonepy/pylib/bin/**",
+        // "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/*",
     ],
     "cursorpyright.analysis.extraPaths": [
+        "./stonepy",
+        "./strat/research/python_libs",
+        // "/spare/local/cbournhonesque/.micromamba/envs/otel/lib/python3.8/site-packages/",
+        // "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/site-packages/"
     ],
     "basedpyright.analysis.typeCheckingMode": "recommended",
+    // "basedpyright.analysis.logLevel": "Trace",
     "basedpyright.analysis.include": [
+        "stonepy/pylib",
+        "strat/research/python_libs/strat_research",
+        // "/spare/ssd/cbournhonesque/uvenvs/20241018/lib/python3.11/site-packages/narwhals/**",
     ],
     "basedpyright.analysis.extraPaths": [
+        "./stonepy",
+        "./strat/research/python_libs",
+        // "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/site-packages/",
     ],
     "basedpyright.analysis.exclude": [
+        "**/node_modules",
         "**/.venv",
         "**/build",
         "**/__pycache__",
+        "stonepy/pylib/.src/**",
+        "stonepy/pylib/scripts/**",
+        "stonepy/pylib/bin/**",
+        // "/apps/stonefs1/stonepy/venv/dev/20240112.dev.py3-stonelib/lib/python3.8/*",
     ],
     "python.analysis.enablePytestSupport": true,
     "python.envFile": "${workspaceFolder}/.vscode/python-env-vars",
@@ -58,6 +143,7 @@
         "editor.wordBasedSuggestions": "off"
     },
     "ruff.path": [
+        "/apps/stonefs1/stonepy/bin/ruff"
     ],
 
      // other formatting
@@ -75,15 +161,22 @@
      ],
      "gitlens.remotes": [
          {
-             "domain": "",
+             "domain": "stonegerrit.skae",
              "type": "Custom",
              "urls": {
+                 "repository": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}",
+                 "branch": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}/+/refs/heads/${branch}",
+                 "commit": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}/+/${id}",
+                 "file": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}/+/refs/heads/master/${file}${line}",
+                 "fileInBranch": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}/+/refs/heads/${branch}/${file}${line}",
+                 "fileInCommit": "https://stonegerrit.tower-research.com/plugins/gitiles/${repo}/+/${id}/${file}${line}",
                  "fileLine": "#${line}",
                  "fileRange": "#${start}-${end}"
              }
          }
      ],
 
+    ////// TOWER
     "workbench.editor.enablePreview": false,
     "workbench.statusBar.feedback.visible": false,
     // settings sync
@@ -91,6 +184,18 @@
     "sync.autoUpload": true,
     "sync.autoDownload": true,
     "git.confirmSync": false,
+    // pytest
+    "python.testing.pytestArgs": [
+        "--rootdir", "tests",
+        "--no-cov",
+    ],
+    "python.testing.pytestAdapterEnabled": false,
+    "python.testing.pytestPath": "/apps/stonefs1/stonepy/bin/pylib_wrapper_py3 -m pytest",
+    "python.testing.pytestEnabled": true,
+    "code-runner.executorMap": {
+        "python": "cd $dir && ./bin/pylib_wrapper_py3 -m pytest"
+    },
+    "python.testing.cwd": "${workspaceFolder}/stonepy/pylib",
     // autocomplete,
     "editor.tabCompletion": "on",
     // vim
@@ -253,7 +358,19 @@
     "notebook.output.wordWrap": true,
     "window.commandCenter": true,
     "window.title": "${rootName}${separator}${profileName}",
+    // rust (TOWER)
+    "rust-analyzer.server.extraEnv": {
+        "PKG_CONFIG_PATH": "/spare/local/cbournhonesque/.micromamba/lib/pkgconfig/",
+        "LD_LIBRARY_PATH": "/spare/local/cbournhonesque/.micromamba/lib",
+        "CARGO_HOME": "/spare/ssd/cbournhonesque/src/.cargo",
+        "RUSTUP_HOME": "/spare/ssd/cbournhonesque/src/.rustup",
+    },
     "rust-analyzer.checkOnSave": false,
+    "remote.SSH.remotePlatform": {
+        "sd8sync": "linux",
+        "spd14sync": "linux",
+        "stonejenkins.skae": "linux"
+    },
     // git
     "git.openRepositoryInParentFolders": "always",
     "git.mergeEditor": true,
@@ -267,7 +384,24 @@
         "diffEditor.insertedLineBackground": "#4ca34c31"
     },
     "remote.autoForwardPortsSource": "hybrid",
-    "gitlens.autolinks": [],
+    "gitlens.autolinks": [
+        {
+            "prefix": "I",
+            "url": "https://stonegerrit.tower-research.com/q/<num>",
+            "ignoreCase": true
+        },
+        {
+            "prefix": "PYLIB-",
+            "url": "https://stonejira.tower-research.com/browse/PYLIB-<num>",
+            "ignoreCase": false
+        },
+        {
+            "prefix": "Change-Id: ",
+            "url": "https://stonegerrit.tower-research.com/q/<num>",
+            "ignoreCase": true
+        }
+    ],
+    "clangd.path": "/apps/stonefs1/cbournhonesque/.config/Cursor/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/20.1.8/clangd_20.1.8/bin/clangd",
     "window.titleBarStyle": "native",
     "jupyter.completionTriggerCharacters": {
         "bash": [
@@ -334,4 +468,21 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "rust-analyzer.restartServerOnConfigChange": true,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "cursor.composer.shouldAllowCustomModes": true,
+    "window.customTitleBarVisibility": "never",
+    "notebook.diff.overviewRuler": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.jupyterCommandLineArguments": [
+
+    ],
+    // jupyter
+    "notebook.insertToolbarLocation": "notebookToolbar",
+    "breadcrumbs.enabled": false,
+    "notebook.showCellStatusBar": "hidden",
+    "notebook.cellToolbarLocation": {
+        "jupyter-notebook": "hidden"
+    },
+    "pyStringDef.pythonCommand": "/apps/stonefs1/stonepy/venv/dev/20250717.py311-stonelib/bin/python"
 }

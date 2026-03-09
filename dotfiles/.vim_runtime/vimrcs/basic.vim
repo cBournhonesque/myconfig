@@ -1,4 +1,26 @@
 " => General
+" remap escape key
+inoremap jk <ESC>
+inoremap <M-[> <ESC>
+
+" Start with folding open at max level of folding
+" autocmd BufAdd * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
+
+" Change cursor style for insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Set Ctrl-C to the + (X11) register
+vnoremap <C-c> "+y
+" Set Command-C to the + (X11) register (mapped by iterm2)
+vnoremap <Esc>]91 "+y
+vnoremap <C-x> "+d
+nnoremap <C-v> "+p
+inoremap <C-v> <C-r>+
+
+" Set :Q to do :q
+noremap :Q :q<cr>
+
 " Sets how many lines of history VIM has to remember
 set history=200
 try
@@ -43,6 +65,7 @@ set cmdheight=2
 set hid
 set foldcolumn=0
 set background=dark
+set termguicolors
 set encoding=utf8
 set ffs=unix,dos,mac
 

@@ -160,7 +160,7 @@
     {
       "key": "cmd+d",
       "command": "workbench.action.debug.start",
-      "when": "debuggersAvailable && debugState == 'inactive'"
+      "when": "debuggersAvailable && debugState == 'inactive' && !jupyter.ispythonnotebook"
     },
     // ! DEBUG //
     {
@@ -542,7 +542,7 @@
       "command": "-workbench.action.replaceInFiles"
     },
     {
-      "key": "ctrl+[",
+      "key": "alt+[",
       "command": "interactive.input.clear",
       "when": "isCompositeNotebook && !LinkedEditingInputVisible && !accessibilityHelpWidgetVisible && !breakpointWidgetVisible && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !exceptionWidgetVisible && !findWidgetVisible && !inSnippetMode && !inlineChatVisible && !isComposing && !markersNavigationVisible && !notebookEditorFocused && !notificationToastsVisible && !parameterHintsVisible && !renameInputVisible && !selectionAnchorSet && !suggestWidgetVisible"
     },
@@ -552,9 +552,9 @@
       "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !inlineChatFocused"
     },
     {
-      "key": "ctrl+r",
+      "key": "ctrl+h",
       "command": "editor.action.startFindReplaceAction",
-      "when": "(editorFocus || editorIsOpen) && !notebookEditorFocused"
+      "when": "editorFocus && !notebookEditorFocused || editorIsOpen && !notebookEditorFocused"
     },
     {
       "key": "ctrl+h",
@@ -564,6 +564,29 @@
     {
       "key": "ctrl+alt+o",
       "command": "outline.focus"
+    },
+    {
+      "key": "ctrl+shift+f",
+      "command": "workbench.action.evenEditorWidths"
+    },
+    {
+      "key": "ctrl+alt+u",
+      "command": "workbench.action.togglePanel"
+    },
+    {
+      "key": "0 0",
+      "command": "jupyter.restartkernel",
+      "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+      "key": "escape",
+      "command": "-interactive.input.clear",
+      "when": "isCompositeNotebook && !LinkedEditingInputVisible && !accessibilityHelpWidgetVisible && !breakpointWidgetVisible && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !exceptionWidgetVisible && !findWidgetVisible && !inSnippetMode && !inlineChatVisible && !isComposing && !markersNavigationVisible && !notebookEditorFocused && !notificationToastsVisible && !parameterHintsVisible && !renameInputVisible && !selectionAnchorSet && !suggestWidgetVisible"
+    },
+    {
+      "key": "ctrl+[",
+      "command": "interactive.input.clear",
+      "when": "isCompositeNotebook && !LinkedEditingInputVisible && !accessibilityHelpWidgetVisible && !breakpointWidgetVisible && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !exceptionWidgetVisible && !findWidgetVisible && !inSnippetMode && !inlineChatVisible && !isComposing && !markersNavigationVisible && !notebookEditorFocused && !notificationToastsVisible && !parameterHintsVisible && !renameInputVisible && !selectionAnchorSet && !suggestWidgetVisible"
     },
 
 
